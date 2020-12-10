@@ -18,6 +18,8 @@
 
    <link rel="stylesheet" type="text/css" href="css/index.css">
 
+   <script src="https://kit.fontawesome.com/8cea6542ee.js" crossorigin="anonymous"></script>
+
 
 </head>
 <body>
@@ -31,22 +33,52 @@
                 <li><a href="">Work</a></li>
                 <li><a href="">Gallery</a></li>
                 <li><a href="">Blog</a></li>
-                <li><a href="">Shop +</a></li>
+                <li><a href="" onmouseover="gnb_shop_mouseover()"
+                    onmouseout="gnb_shop_mouseout()">Shop +</a>
+                    <div id="gnb_shop" onmouseover="gnb_shop_mouseover()"
+                    onmouseout="gnb_shop_mouseout()">
+                        <p><a href="">Online Shop (International)</a></p>
+                        <p><a href="">Online Shop (Korea)</a></p>
+                        <p><a href="">Online Shop List</a></p>
+                    </div>
+                </li>
                 <li><a href="">Contact</a></li>
             </ul>
         </nav>
 
         <nav id="work_lnb">
             <ul class="work_lnb_menu">
-                <li><a href="">- all</a></li>
-                <li><a href="">- animation</a></li>
-                <li><a href="">- collaboration</a></li>
-                <li><a href="">- exhibition</a></li>
-                <li><a href="">- product</a></li>
+                <li><a onclick="categoryView('')">- all</a></li>
+                <li><a onclick="categoryView('Animation')">- animation</a></li>
+                <li><a onclick="categoryView('Colaboration')">- collaboration</a></li>
+                <li><a onclick="categoryView('Exhibition')">- exhibition</a></li>
+                <li><a onclick="categoryView('Product')">- product</a></li>
             </ul>
         </nav>
         
     </header>
+
+    <header id="mobile_header">
+        <ul id="gnb_m_menu">
+            <li><a href="">About</a></li>
+            <li><a href="">Work</a></li>
+            <li><a href="">Gallery</a></li>
+            <li><a href="">Blog</a></li>
+            <li><a href="#">Shop</a>
+                <p><a href="">Online Shop (International)</a></p>
+                <p><a href="">Online Shop (Korea)</a></p>
+                <p><a href="">Online Shop List</a></p>
+            </li>
+            <li><a href="">Contact</a></li>
+        </ul>
+        <nav id="gnb_m">
+            <figure>
+                <img src="img/new-logo_black.png">
+            </figure>
+            <div id="gnb_m_button" onclick="gnb_m_open();"><p><i class="fas fa-bars"></i></p></div>
+        </nav>
+    </header>
+
 
     <section id="header_info">
         <figure>
@@ -433,6 +465,49 @@
     <!-- <script>
         document.getElementById('post_001').style=" display:none;";
     </script> -->
+
+    <script>
+
+        function gnb_shop_mouseover() {
+            document.getElementById("gnb_shop"). style = "height:80px";
+        }
+
+        function gnb_shop_mouseout() {
+            document.getElementById("gnb_shop"). style = "height:0";
+        }
+
+        var gnb_m_openstate = 0;
+        function gnb_m_open() {
+            if ( gnb_m_openstate == 0 )
+            {
+            document.getElementById("gnb_m_menu").style
+            ="padding:20px 20px; height:420px;";
+            gnb_m_openstate = 1;
+            }
+
+            else {
+            document.getElementById("gnb_m_menu").style
+            ="padding:0; height:0px;";
+            gnb_m_openstate = 0;
+            }
+        }
+
+        function categoryView(categoryName) {
+
+            var article = document.querySelectorAll('article');
+            var articleH2 = document.querySelectorAll('article h2');
+
+            for (i=0; i < article.length; i++) {
+
+                if ( articleH2[i].textContent.indexOf(categoryName) == -1 ) {
+                    article[i].style.display = "none"
+                } else { 
+                    article[i].style.display = "block"
+                }
+            }
+        }
+
+    </script>
 
 
     <footer></footer>
